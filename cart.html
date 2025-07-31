@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - Fashionbeauty</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .cart-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+
+        .cart-section,
+        .liked-section {
+            margin-bottom: 3rem;
+        }
+
+        .cart-item,
+        .liked-item {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 2rem;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            align-items: center;
+        }
+
+        .item-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .item-details h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .item-price {
+            color: var(--accent-coral);
+            font-weight: 600;
+            margin: 0.5rem 0;
+        }
+
+        .item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .quantity-btn {
+            background: var(--glass-bg);
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .quantity-btn:hover {
+            background: var(--accent-coral);
+            color: white;
+        }
+
+        .item-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .remove-btn {
+            background: none;
+            border: none;
+            color: var(--accent-coral);
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: opacity 0.3s;
+        }
+
+        .remove-btn:hover {
+            opacity: 0.7;
+        }
+
+        .cart-summary {
+            margin-top: 2rem;
+            padding: 2rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 1rem 0;
+        }
+
+        .total-row {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .checkout-section {
+            margin-top: 2rem;
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .payment-method {
+            padding: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .payment-method:hover {
+            background: var(--accent-coral);
+            color: white;
+        }
+
+        .payment-method.selected {
+            background: var(--accent-coral);
+            color: white;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--accent-coral);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .checkout-btn:hover {
+            opacity: 0.9;
+        }
+
+        .empty-message {
+            text-align: center;
+            padding: 3rem;
+            font-size: 1.2rem;
+            color: var(--glass-border);
+        }
+
+        @media (max-width: 768px) {
+            .cart-item,
+            .liked-item {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .item-image {
+                margin: 0 auto;
+            }
+
+            .item-actions {
+                justify-content: center;
+            }
+
+            .payment-methods {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-switch">
+        <input type="checkbox" id="theme-toggle">
+        <label for="theme-toggle" class="theme-label"></label>
+    </div>
+
+    <nav class="glass-nav">
+        <div class="nav-brand">
+            <h1>Fashionbeauty</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="products.html">Our Products</a></li>
+            <li><a href="cart.html" class="active">Cart</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="cart-container">
+            <section class="cart-section glass-effect">
+                <h2>Shopping Cart</h2>
+                <div id="cart-items">
+                    <!-- Cart items will be dynamically added here -->
+                </div>
+                <div class="cart-summary">
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span id="subtotal">$0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping</span>
+                        <span id="shipping">$0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Tax</span>
+                        <span id="tax">$0.00</span>
+                    </div>
+                    <div class="summary-row total-row">
+                        <span>Total</span>
+                        <span id="total">$0.00</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="liked-section glass-effect">
+                <h2>Liked Items</h2>
+                <div id="liked-items">
+                    <!-- Liked items will be dynamically added here -->
+                </div>
+            </section>
+
+            <section class="checkout-section glass-effect">
+                <h2>Checkout</h2>
+                <div class="payment-methods">
+                    <div class="payment-method glass-effect" data-method="google-pay">
+                        <img src="images/placeholder.svg" alt="Google Pay" width="24" height="24">
+                        <span>Google Pay</span>
+                    </div>
+                    <div class="payment-method glass-effect" data-method="card">
+                        <img src="images/placeholder.svg" alt="Credit Card" width="24" height="24">
+                        <span>Credit/Debit Card</span>
+                    </div>
+                    <div class="payment-method glass-effect" data-method="cod">
+                        <img src="images/placeholder.svg" alt="Cash on Delivery" width="24" height="24">
+                        <span>Cash on Delivery</span>
+                    </div>
+                </div>
+                <button class="checkout-btn" id="checkout-btn" disabled>Proceed to Checkout</button>
+            </section>
+        </div>
+    </main>
+
+    <footer class="glass-effect">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Fashionbeauty</h3>
+                <p>9 years of fashion excellence</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact Us</h4>
+                <p>Email: info@fashionbeauty.com</p>
+                <p>Phone: (555) 123-4567</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Fashionbeauty. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/theme.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+</html>

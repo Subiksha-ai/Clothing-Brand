@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Fashionbeauty</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .products-container {
+            padding: 2rem;
+        }
+
+        .category-section {
+            margin: 3rem 0;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+
+        .category-filters {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 20px;
+            background: var(--glass-bg);
+            color: inherit;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--accent-coral);
+            color: white;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            position: relative;
+            padding-top: 125%;
+            background: var(--glass-bg);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .like-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--glass-bg);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--accent-coral);
+            transition: all 0.3s;
+        }
+
+        .like-btn.liked {
+            background: var(--accent-coral);
+            color: white;
+        }
+
+        .product-info {
+            padding: 1rem;
+        }
+
+        .product-info h3 {
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        .price {
+            font-weight: 600;
+            color: var(--accent-coral);
+            margin: 0.5rem 0;
+        }
+
+        .rating {
+            color: gold;
+            margin: 0.5rem 0;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .product-actions button {
+            flex: 1;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .add-to-cart {
+            background: var(--glass-bg);
+            color: inherit;
+        }
+
+        .buy-now {
+            background: var(--accent-coral);
+            color: white;
+        }
+
+        .add-to-cart:hover {
+            background: var(--accent-lavender);
+            color: white;
+        }
+
+        .buy-now:hover {
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .category-header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .category-filters {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-switch">
+        <input type="checkbox" id="theme-toggle">
+        <label for="theme-toggle" class="theme-label"></label>
+    </div>
+
+    <nav class="glass-nav">
+        <div class="nav-brand">
+            <h1>Fashionbeauty</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="products.html" class="active">Our Products</a></li>
+            <li><a href="cart.html">Cart</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="products-container">
+            <!-- Women's Section -->
+            <section class="category-section glass-effect">
+                <div class="category-header">
+                    <h2>Women's Fashion</h2>
+                    <div class="category-filters">
+                        <button class="filter-btn active" data-category="all">All</button>
+                        <button class="filter-btn" data-category="tops">Tops</button>
+                        <button class="filter-btn" data-category="leggings">Leggings</button>
+                        <button class="filter-btn" data-category="palazzos">Palazzos</button>
+                    </div>
+                </div>
+                <div class="product-grid" id="women-products"></div>
+            </section>
+
+            <!-- Men's Section -->
+            <section class="category-section glass-effect">
+                <div class="category-header">
+                    <h2>Men's Fashion</h2>
+                    <div class="category-filters">
+                        <button class="filter-btn active" data-category="all">All</button>
+                        <button class="filter-btn" data-category="tshirts">T-shirts</button>
+                        <button class="filter-btn" data-category="shirts">Shirts</button>
+                        <button class="filter-btn" data-category="pants">Pants</button>
+                    </div>
+                </div>
+                <div class="product-grid" id="men-products"></div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="glass-effect">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Fashionbeauty</h3>
+                <p>9 years of fashion excellence</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact Us</h4>
+                <p>Email: info@fashionbeauty.com</p>
+                <p>Phone: (555) 123-4567</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Fashionbeauty. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/theme.js"></script>
+    <script src="js/products.js"></script>
+</body>
+</html>

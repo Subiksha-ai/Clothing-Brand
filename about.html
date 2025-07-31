@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Fashionbeauty</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .about-hero {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            line-height: 1.8;
+        }
+
+        .timeline {
+            margin: 4rem 0;
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--accent-coral);
+        }
+
+        .timeline-item {
+            margin: 2rem 0;
+            position: relative;
+            width: 50%;
+            padding: 1rem;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 3rem;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 3rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--accent-lavender);
+            border-radius: 50%;
+            top: 50%;
+        }
+
+        .timeline-item:nth-child(odd)::before {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even)::before {
+            left: -10px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .value-card {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .value-card h3 {
+            color: var(--accent-coral);
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 0;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 2rem !important;
+                left: 0 !important;
+            }
+
+            .timeline-item::before {
+                left: -10px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-switch">
+        <input type="checkbox" id="theme-toggle">
+        <label for="theme-toggle" class="theme-label"></label>
+    </div>
+
+    <nav class="glass-nav">
+        <div class="nav-brand">
+            <h1>Fashionbeauty</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="products.html">Our Products</a></li>
+            <li><a href="cart.html">Cart</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="about-hero glass-effect">
+            <h1>Our Story</h1>
+            <p>A 9-year journey of fashion excellence</p>
+        </section>
+
+        <section class="about-content glass-effect">
+            <h2>About Fashionbeauty</h2>
+            <p>Founded in 2015, Fashionbeauty has grown from a small boutique to a leading fashion brand, specializing in high-quality women's and men's apparel. As a women-owned business, we take pride in our commitment to creating fashion that empowers and inspires.</p>
+            
+            <div class="timeline">
+                <div class="timeline-item glass-effect">
+                    <h3>2015</h3>
+                    <p>Founded as a small boutique with a vision to create accessible, high-quality fashion</p>
+                </div>
+                <div class="timeline-item glass-effect">
+                    <h3>2017</h3>
+                    <p>Expanded into men's fashion, doubling our product range</p>
+                </div>
+                <div class="timeline-item glass-effect">
+                    <h3>2019</h3>
+                    <p>Launched our online store, reaching customers nationwide</p>
+                </div>
+                <div class="timeline-item glass-effect">
+                    <h3>2021</h3>
+                    <p>Introduced sustainable fashion lines and eco-friendly packaging</p>
+                </div>
+                <div class="timeline-item glass-effect">
+                    <h3>2024</h3>
+                    <p>Celebrating 9 years of fashion excellence with our loyal customers</p>
+                </div>
+            </div>
+
+            <h2>Our Values</h2>
+            <div class="values-grid">
+                <div class="value-card glass-effect">
+                    <h3>Quality</h3>
+                    <p>We never compromise on the quality of our products, ensuring each piece meets our high standards</p>
+                </div>
+                <div class="value-card glass-effect">
+                    <h3>Innovation</h3>
+                    <p>Constantly evolving and adapting to bring you the latest trends and styles</p>
+                </div>
+                <div class="value-card glass-effect">
+                    <h3>Sustainability</h3>
+                    <p>Committed to reducing our environmental impact through sustainable practices</p>
+                </div>
+                <div class="value-card glass-effect">
+                    <h3>Community</h3>
+                    <p>Building lasting relationships with our customers and supporting local communities</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="glass-effect">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Fashionbeauty</h3>
+                <p>9 years of fashion excellence</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact Us</h4>
+                <p>Email: info@fashionbeauty.com</p>
+                <p>Phone: (555) 123-4567</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Fashionbeauty. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/theme.js"></script>
+</body>
+</html>
