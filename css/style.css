@@ -1,0 +1,270 @@
+:root {
+    --primary-light: #F5F5F5;
+    --primary-dark: #1A1A1A;
+    --accent-coral: #FF6F61;
+    --accent-lavender: #D29EFF;
+    --dark-bg: #0F0F0F;
+    --glass-bg: rgba(255, 255, 255, 0.15);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --glass-shadow: rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    transition: background-color 0.3s, color 0.3s;
+    min-height: 100vh;
+}
+
+body.dark-theme {
+    background: var(--dark-bg);
+    color: var(--primary-light);
+}
+
+/* Glassmorphism Effect */
+.glass-effect {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px var(--glass-shadow);
+}
+
+/* Navigation */
+.glass-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.nav-brand h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8rem;
+    color: var(--accent-coral);
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: inherit;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--accent-coral);
+}
+
+/* Theme Switch */
+.theme-switch {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1001;
+}
+
+.theme-label {
+    width: 50px;
+    height: 25px;
+    background: var(--glass-bg);
+    display: block;
+    border-radius: 25px;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.theme-label::after {
+    content: '';
+    width: 21px;
+    height: 21px;
+    background: var(--accent-lavender);
+    position: absolute;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.3s;
+}
+
+#theme-toggle {
+    display: none;
+}
+
+#theme-toggle:checked + .theme-label::after {
+    transform: translateX(25px);
+}
+
+/* Main Content */
+main {
+    padding-top: 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 2rem;
+}
+
+/* Hero Section */
+.hero {
+    height: 70vh;
+    margin: 2rem auto;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-image: linear-gradient(45deg, rgba(255,111,97,0.1), rgba(210,158,255,0.1));
+}
+
+.hero h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.promo-banner {
+    margin-top: 2rem;
+    padding: 1rem;
+    background: var(--accent-coral);
+    color: white;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+/* Sections */
+section {
+    margin: 4rem auto;
+    padding: 2rem;
+}
+
+section h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Grid Layouts */
+.attraction-grid,
+.product-grid,
+.offer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+}
+
+/* Cards */
+.attraction-card {
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.attraction-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-image.placeholder {
+    width: 100%;
+    height: 200px;
+    background: var(--glass-bg);
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+/* Footer */
+footer {
+    margin-top: 4rem;
+    padding: 3rem 5%;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-brand h3 {
+    font-family: 'Poppins', sans-serif;
+    color: var(--accent-coral);
+    margin-bottom: 1rem;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links a {
+    color: inherit;
+    text-decoration: none;
+    line-height: 1.8;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid var(--glass-border);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-brand h1 {
+        font-size: 1.5rem;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    section h2 {
+        font-size: 2rem;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    section {
+        padding: 1rem;
+    }
+
+    .attraction-grid,
+    .product-grid,
+    .offer-grid {
+        grid-template-columns: 1fr;
+    }
+}
